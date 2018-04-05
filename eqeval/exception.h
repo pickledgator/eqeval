@@ -2,6 +2,7 @@
 #define EQEVAL_EXCEPTION_H
 
 #include <exception>
+#include <string>
 
 namespace eqeval {
 

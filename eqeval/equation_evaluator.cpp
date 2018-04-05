@@ -40,11 +40,11 @@ void EquationEvaluator::solve() {
 
 void EquationEvaluator::generateParsers(const std::vector<std::string> &equation_strings) {
     for (auto eq_str : equation_strings) {
-        equation_parsers_.push_back(EquationParser(eq_str));
+        equation_parsers_.push_back(equation_parser::EquationParser(eq_str));
     }
 }
 
-void EquationEvaluator::evaluateEquation(EquationParser &eq) {
+void EquationEvaluator::evaluateEquation(equation_parser::EquationParser &eq) {
     // check for non-unique solution
     std::string dummy;
     if (resolveVariable(eq.getLHS(), dummy)) {
@@ -96,11 +96,11 @@ std::vector<std::string> EquationEvaluator::shuntingYardSimple(const std::vector
     std::stack<std::string> stack;
     for (auto token : tokens) {
         // if token is a number, push it to the output queue
-        if (isNumber(token)) {
+        if (string_utils::isNumber(token)) {
             output.push_back(token);
         }
         // if the token is a variable, look up the variable in the map to resolve it
-        if (isVariable(token)) {
+        if (string_utils::isVariable(token)) {
             std::string value_of_variable;
             // try to resolve the variable from the map
             if (resolveVariable(token, value_of_variable)) {
@@ -115,7 +115,7 @@ std::vector<std::string> EquationEvaluator::shuntingYardSimple(const std::vector
             }
         }
 
-        if (isOperator(token)) {
+        if (string_utils::isOperator(token)) {
             if (!stack.empty()) {
                 auto top_of_stack = stack.top();
                 // the only check that applies to this project is checking for an operator of equal
@@ -125,7 +125,7 @@ std::vector<std::string> EquationEvaluator::shuntingYardSimple(const std::vector
                 // there is an operator at the top of the operator stack with greater precedence
                 // the operator at the top of the operator stack has equal precedence and is left associative
                 // the operator at the top of the operator stack is not a left bracket
-                while (isOperator(top_of_stack) && top_of_stack == token) {
+                while (string_utils::isOperator(top_of_stack) && top_of_stack == token) {
                     // pop off the operator and add it to the output queue
                     stack.pop();
                     output.push_back(top_of_stack);
@@ -158,7 +158,7 @@ unsigned long EquationEvaluator::evaluateRPN(std::vector<std::string> tokens) {
 
     for (auto token : tokens) {
         // if the next token is an operator, assume we are ready to calculate
-        if (isOperator(token)) {
+        if (string_utils::isOperator(token)) {
             auto var2 = std::strtoul(stack.top().c_str(), NULL, 0);
             stack.pop();
             auto var1 = std::strtoul(stack.top().c_str(), NULL, 0);

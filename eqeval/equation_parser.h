@@ -6,6 +6,7 @@
 #include <vector>
 
 namespace eqeval {
+namespace equation_parser {
 
 class EquationParser {
   public:
@@ -15,8 +16,6 @@ class EquationParser {
     std::vector<std::string> const &getRHSTokens() { return rhs_tokens_; };
 
   private:
-    void extractTokens();
-    std::string tokensToString(const std::vector<std::string> &tokens);
     std::string raw_str_;
     std::string lhs_str_;
     std::string rhs_str_;
@@ -25,6 +24,7 @@ class EquationParser {
 
 std::ostream &operator<<(std::ostream &strm, const EquationParser &a);
 
+} // namespace equation_parser
 } // namespace eqeval
 
 #endif // EQEVAL_EQUATION_PARSER_HPP

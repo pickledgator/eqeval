@@ -21,8 +21,11 @@ cc_binary(
 )
 
 cc_test(
-    name = "test_hello",
-    srcs = ["test/test_hello.cpp"],
-    deps = ["@catch//:catch_main"],
+    name = "unittests",
+    srcs = ["test/test_string_utils.cpp"],
+    deps = [
+        "@catch//:catch_main",
+        ":equation_evaluator_lib",
+    ],
     size = 'small',
 )
