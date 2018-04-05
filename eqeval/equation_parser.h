@@ -12,7 +12,7 @@ class EquationParser {
     EquationParser(const std::string &str);
     std::string getLHS() const { return lhs_str_; };
     std::string getRHS() const { return rhs_str_; };
-    std::vector<std::string> getRHSTokens() const { return rhs_tokens_; };
+    std::vector<std::string> const &getRHSTokens() { return rhs_tokens_; };
 
   private:
     void extractTokens();
