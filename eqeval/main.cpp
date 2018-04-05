@@ -1,5 +1,6 @@
 #include "eqeval/equation_evaluator.h"
 #include "eqeval/exception.h"
+#include "eqeval/io_utils.h"
 #include <boost/program_options.hpp>
 #include <iostream>
 
@@ -39,8 +40,9 @@ int main(int argc, char **argv) {
     // Attempt to read the input file
     // In event that this fails, we won't be able to show the desired output since we haven't actually read the file.
     // Just throw an error for now.
+    std::vector<std::string> equations;
     try {
-        ee.readFile(input_file_path);
+        equations = eqeval::io_utils::readEquationsFromFile(input_file_path);
     } catch (const std::exception &e) {
         std::cerr << e.what() << std::endl;
         return -1;
@@ -48,7 +50,7 @@ int main(int argc, char **argv) {
 
     // If the file is read successfully, process it.
     try {
-        ee.solve();
+        ee.solve(equations);
     } catch (const eqeval::Exception &e) {
         // caught an exception in processing, display input data
         ee.printEquations();

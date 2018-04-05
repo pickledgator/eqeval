@@ -15,11 +15,9 @@ namespace eqeval {
 class EquationEvaluator {
   public:
     EquationEvaluator();
-
-    void readFile(const std::string &input_file_path);
     void printSolution() noexcept;
     void printEquations() noexcept;
-    void solve();
+    void solve(const std::vector<std::string> &equations);
 
   private:
     void generateParsers(const std::vector<std::string> &equation_strings);

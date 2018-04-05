@@ -4,12 +4,14 @@ cc_library(
         "equation_evaluator.cpp",
         "equation_parser.cpp",
         "string_utils.cpp",
+        "io_utils.cpp",
     ],
     hdrs = [
         "equation_evaluator.h",
         "equation_parser.h",
         "exception.h",
         "string_utils.h",
+        "io_utils.h",
     ],
 )
 
@@ -22,10 +24,17 @@ cc_binary(
 
 cc_test(
     name = "unittests",
-    srcs = ["test/test_string_utils.cpp"],
+    srcs = [
+        "test/test_string_utils.cpp",
+        "test/test_io_utils.cpp",
+    ],
     deps = [
         "@catch//:catch_main",
         ":equation_evaluator_lib",
+    ],
+    data = [
+        "test/test_equations_valid.txt",
+        "test/test_equations_invalid.txt",
     ],
     size = 'small',
 )

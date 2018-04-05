@@ -1,0 +1,5 @@
+offset = 4 + random + 1
+location = 1 + origin + offset
+origin = 3 + 5
+blah = 4 + 5 + 2000000000000 + 14
+blah = blah + 50 + random + location

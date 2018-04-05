@@ -1,4 +1,3 @@
-#include <fstream>
 #include <iostream>
 #include <iterator>
 #include <sstream>
@@ -11,9 +10,9 @@ namespace eqeval {
 
 EquationEvaluator::EquationEvaluator() {}
 
-void EquationEvaluator::solve() {
+void EquationEvaluator::solve(const std::vector<std::string> &equations) {
     // Attempt to generate parsers from the each of the equation strings read from the file
-    generateParsers(equation_strings_);
+    generateParsers(equations);
 
     // We now have parsers for all equations in the file, let's try to evaluate them
     while (!equation_parsers_.empty()) {
@@ -67,17 +66,6 @@ void EquationEvaluator::printEquations() noexcept {
 void EquationEvaluator::printSolution() noexcept {
     for (auto const &x : variable_map_) {
         std::cout << x.first << " = " << x.second << std::endl;
-    }
-}
-
-void EquationEvaluator::readFile(const std::string &input_file_path) {
-    std::ifstream input_file(input_file_path);
-    if (!input_file) {
-        throw std::runtime_error{ "Could not open file: " + input_file_path };
-    }
-    std::string line;
-    while (std::getline(input_file, line)) {
-        equation_strings_.push_back(line);
     }
 }
 
