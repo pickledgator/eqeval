@@ -2,6 +2,8 @@
 #include "eqeval/equation_parser.h"
 #include <sstream>
 
+/// Set of test cases for the equation parser class
+
 TEST_CASE("Tests for equation parser", "[equation_parser]") {
 
     SECTION("token failure") { 

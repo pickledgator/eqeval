@@ -3,6 +3,8 @@
 #include <map>
 #include <iostream>
 
+/// Set of test cases for the shunting yard and rpn evaluation methods
+
 TEST_CASE("Tests for shunting yard algorithm", "[shunting_yard]") {
     std::map<std::string, std::function<unsigned long(unsigned long, unsigned long)>> operator_map{ { "+",
         [](unsigned long a, unsigned long b) { return a + b; } } };
@@ -12,7 +14,7 @@ TEST_CASE("Tests for shunting yard algorithm", "[shunting_yard]") {
         variable_map.insert(std::pair<std::string, std::string>("a", "3"));
         variable_map.insert(std::pair<std::string, std::string>("b", "4"));
         std::vector<std::string> tokens = {"c", "+", "3"};
-        REQUIRE_THROWS(eqeval::algorithm::shuntingYardInfixToRPN(tokens, variable_map));
+        REQUIRE_THROWS(eqeval::algorithm::shuntingYardSimpleInfixToRPN(tokens, variable_map));
     }
 
     SECTION("valid input") {
@@ -20,7 +22,7 @@ TEST_CASE("Tests for shunting yard algorithm", "[shunting_yard]") {
         variable_map.insert(std::pair<std::string, std::string>("a", "3"));
         variable_map.insert(std::pair<std::string, std::string>("b", "4"));
         std::vector<std::string> tokens = {"b", "+", "3"};
-        auto out = eqeval::algorithm::shuntingYardInfixToRPN(tokens, variable_map);
+        auto out = eqeval::algorithm::shuntingYardSimpleInfixToRPN(tokens, variable_map);
         REQUIRE(out.size() == 3);
         REQUIRE(out[0] == "4");
         REQUIRE(out[1] == "3");
@@ -32,7 +34,7 @@ TEST_CASE("Tests for shunting yard algorithm", "[shunting_yard]") {
         variable_map.insert(std::pair<std::string, std::string>("a", "3"));
         variable_map.insert(std::pair<std::string, std::string>("b", "4"));
         std::vector<std::string> tokens = {"b", "+", "3", "+", "a", "+", "1000"};
-        auto out = eqeval::algorithm::shuntingYardInfixToRPN(tokens, variable_map);
+        auto out = eqeval::algorithm::shuntingYardSimpleInfixToRPN(tokens, variable_map);
         REQUIRE(out.size() == 7);
         REQUIRE(out[6] == "+");
     }
@@ -42,7 +44,7 @@ TEST_CASE("Tests for shunting yard algorithm", "[shunting_yard]") {
         variable_map.insert(std::pair<std::string, std::string>("a", "3"));
         variable_map.insert(std::pair<std::string, std::string>("b", "4"));
         std::vector<std::string> tokens = {"b", "+", "3.5", "+", "a", "+", "1000"};
-        REQUIRE_THROWS(eqeval::algorithm::shuntingYardInfixToRPN(tokens, variable_map));
+        REQUIRE_THROWS(eqeval::algorithm::shuntingYardSimpleInfixToRPN(tokens, variable_map));
     }
 
     SECTION("invalid input with non var, num, operator") {
@@ -50,7 +52,7 @@ TEST_CASE("Tests for shunting yard algorithm", "[shunting_yard]") {
         variable_map.insert(std::pair<std::string, std::string>("a", "3"));
         variable_map.insert(std::pair<std::string, std::string>("b", "4"));
         std::vector<std::string> tokens = {"b", "-", "3", "+", "a", "+", "1000"};
-        REQUIRE_THROWS(eqeval::algorithm::shuntingYardInfixToRPN(tokens, variable_map));
+        REQUIRE_THROWS(eqeval::algorithm::shuntingYardSimpleInfixToRPN(tokens, variable_map));
     }
 
     SECTION("rpn to ulong valid") {
@@ -70,7 +72,7 @@ TEST_CASE("Tests for shunting yard algorithm", "[shunting_yard]") {
         variable_map.insert(std::pair<std::string, std::string>("a", "3"));
         variable_map.insert(std::pair<std::string, std::string>("b", "4"));
         std::vector<std::string> tokens = {"b", "+", "3"};
-        auto out = eqeval::algorithm::shuntingYardInfixToRPN(tokens, variable_map);
+        auto out = eqeval::algorithm::shuntingYardSimpleInfixToRPN(tokens, variable_map);
         REQUIRE(eqeval::algorithm::rpnToULong(out, operator_map) == 7);
     }
 }

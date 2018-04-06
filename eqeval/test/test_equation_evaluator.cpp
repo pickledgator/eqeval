@@ -3,6 +3,8 @@
 #include "eqeval/io_utils.h"
 #include <sstream>
 
+/// Set of test cases for the equation evaluator class
+
 TEST_CASE("Tests for equation evaluator", "[equation_evaluator]") {
     auto ee = eqeval::EquationEvaluator();
 

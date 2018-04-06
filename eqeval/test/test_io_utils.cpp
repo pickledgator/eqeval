@@ -1,6 +1,8 @@
 #include "catch.hpp"
 #include "eqeval/io_utils.h"
 
+/// Set of test cases for the io utils
+
 TEST_CASE("Test for io utils", "[io_utils]") {
 
     SECTION("read file from disk") {

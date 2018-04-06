@@ -7,7 +7,7 @@
 namespace eqeval {
 namespace algorithm {
 
-std::vector<std::string> shuntingYardInfixToRPN(
+std::vector<std::string> shuntingYardSimpleInfixToRPN(
     const std::vector<std::string> &tokens, const std::map<std::string, std::string> &variable_map) {
     // Container for the non operator tokens
     std::vector<std::string> output;

@@ -1,6 +1,8 @@
 #include "catch.hpp"
 #include "eqeval/string_utils.h"
 
+/// Set of test cases for the string utils
+
 TEST_CASE("Test for string utils", "[string_utils]") {
 
     SECTION("is operator") {

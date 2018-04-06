@@ -99,7 +99,7 @@ bool EquationEvaluator::resolveVariable(const std::string &key, std::string &val
 
 unsigned long EquationEvaluator::evaluateEquation(equation_parser::EquationParser &eq) {
     // run shunting yard algorithm on infix rhs
-    auto rpn = algorithm::shuntingYardInfixToRPN(eq.getRHSTokens(), variable_map_);
+    auto rpn = algorithm::shuntingYardSimpleInfixToRPN(eq.getRHSTokens(), variable_map_);
     // evaluate shunting yard sorting as result
     return algorithm::rpnToULong(rpn, operator_map_);
 }

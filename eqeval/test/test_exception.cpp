@@ -1,6 +1,8 @@
 #include "catch.hpp"
 #include "eqeval/exception.h"
 
+/// Set of test cases for the exception struct
+
 TEST_CASE("Tests for exceptions", "[exceptions]") {
 
     SECTION("recoverable") {
