@@ -23,7 +23,7 @@ curl https://bazel.build/bazel-release.pub.gpg | sudo apt-key add -
 
 ## Build
 ```shell
-cd eqeval
+cd {DIR_OF_PROJECT}
 bazel build eqeval/...
 ```
 
@@ -42,6 +42,11 @@ bazel-bin/eqeval/equation_evaluator -h
 Available input arguments:
 * `-f` - Path to equations file on disk
 * `-h` - Show help
+
+Example usage using equations file:
+```
+bazel-bin/eqeval/equation_evaluator -f eqeval/test/test_equations_valid.txt
+```
 
 ## Equations File Format
 * An equation is defined by: `<LHS> = <RHS>`
