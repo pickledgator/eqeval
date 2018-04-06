@@ -9,7 +9,9 @@ namespace algorithm {
 
 std::vector<std::string> shuntingYardInfixToRPN(
     const std::vector<std::string> &tokens, const std::map<std::string, std::string> &variable_map) {
+    // Container for the non operator tokens
     std::vector<std::string> output;
+    // Container for the operator tokens
     std::stack<std::string> stack;
     for (auto token : tokens) {
         // if token is a number, push it to the output queue
