@@ -1,5 +1,5 @@
-#ifndef EQEVAL_STRING_UTILS_H
-#define EQEVAL_STRING_UTILS_H
+#ifndef EQEVAL_STRING_UTILS_H_
+#define EQEVAL_STRING_UTILS_H_
 
 #include <string>
 #include <vector>
@@ -17,4 +17,4 @@ namespace string_utils {
 } // namespace string_utils
 } // namespace eqeval
 
-#endif // EQEVAL_STRING_UTILS_H
+#endif // EQEVAL_STRING_UTILS_H_

@@ -4,8 +4,8 @@
 #include <stack>
 
 #include "eqeval/equation_evaluator.h"
-#include "eqeval/string_utils.h"
 #include "eqeval/shunting_yard.h"
+#include "eqeval/string_utils.h"
 
 namespace eqeval {
 
@@ -44,11 +44,11 @@ void EquationEvaluator::solve(const std::vector<std::string> &equations) {
 
         // Check to make sure we're not continuously popping and appending in a loop
         // This is the case when there are more variables than equations
-        if(prev_num_equations_left_to_solve == equation_parsers_.size()) {
+        if (prev_num_equations_left_to_solve == equation_parsers_.size()) {
             loop_count++;
         }
         prev_num_equations_left_to_solve = equation_parsers_.size();
-        if(loop_count >= equations.size()) {
+        if (loop_count >= equations.size()) {
             throw Exception("Detected loop in solver.");
         }
     }
@@ -94,6 +94,5 @@ void EquationEvaluator::printSolution() noexcept {
         std::cout << x.first << " = " << x.second << std::endl;
     }
 }
-
 
 } // namespace eqeval

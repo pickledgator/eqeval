@@ -1,5 +1,5 @@
-#ifndef EQEVAL_EXCEPTION_H
-#define EQEVAL_EXCEPTION_H
+#ifndef EQEVAL_EXCEPTION_H_
+#define EQEVAL_EXCEPTION_H_
 
 #include <exception>
 #include <string>
@@ -10,7 +10,8 @@ struct Exception : public std::exception {
     Exception()
         : reason_("") {}
     Exception(const std::string &reason, bool recoverable = false)
-        : reason_(reason), recoverable_(recoverable) {}
+        : reason_(reason)
+        , recoverable_(recoverable) {}
     const char *what() const throw() { return reason_.c_str(); };
     bool isRecoverable() const { return recoverable_; };
 
@@ -21,4 +22,4 @@ struct Exception : public std::exception {
 
 } // namespace eqeval
 
-#endif // EQEVAL_EXCEPTION_H
+#endif // EQEVAL_EXCEPTION_H_

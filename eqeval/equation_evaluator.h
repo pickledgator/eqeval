@@ -1,5 +1,5 @@
-#ifndef EQEVAL_EQUATION_EVALUATOR_H
-#define EQEVAL_EQUATION_EVALUATOR_H
+#ifndef EQEVAL_EQUATION_EVALUATOR_H_
+#define EQEVAL_EQUATION_EVALUATOR_H_
 
 #include <deque>
 #include <functional>
@@ -36,4 +36,4 @@ class EquationEvaluator {
 
 } // namespace eqeval
 
-#endif // EQEVAL_EQUATION_EVALUATOR_HPP
+#endif // EQEVAL_EQUATION_EVALUATOR_H_

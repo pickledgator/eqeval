@@ -1,8 +1,8 @@
 #include "eqeval/shunting_yard.h"
 #include "eqeval/exception.h"
 #include "eqeval/string_utils.h"
-#include <stack>
 #include <iostream>
+#include <stack>
 
 namespace eqeval {
 namespace algorithm {
@@ -71,7 +71,8 @@ namespace algorithm {
         return output;
     }
 
-    unsigned long rpnToULong(const std::vector<std::string> &tokens, const std::map<std::string, std::function<unsigned long(unsigned long, unsigned long)>> &operator_map) {
+    unsigned long rpnToULong(const std::vector<std::string> &tokens,
+        const std::map<std::string, std::function<unsigned long(unsigned long, unsigned long)>> &operator_map) {
         std::stack<std::string> stack;
 
         for (auto token : tokens) {

@@ -13,8 +13,7 @@ TEST_CASE("Test for io utils", "[io_utils]") {
         REQUIRE(equations.size() == 5);
     }
 
-    SECTION("read non existent file from disk") {
-        REQUIRE_THROWS(eqeval::io_utils::readEquationsFromFile("blah.txt"));
+    SECTION("read non existent file from disk") { 
+        REQUIRE_THROWS(eqeval::io_utils::readEquationsFromFile("blah.txt")); 
     }
-
 }

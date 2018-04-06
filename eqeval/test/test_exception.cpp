@@ -16,5 +16,4 @@ TEST_CASE("Tests for exceptions", "[exceptions]") {
         auto e2 = eqeval::Exception("non-recoverable message", false);
         REQUIRE(e.isRecoverable() == false);
     }
-
 }

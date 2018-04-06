@@ -1,5 +1,5 @@
-#include "eqeval/exception.h"
 #include "eqeval/string_utils.h"
+#include "eqeval/exception.h"
 #include <sstream>
 #include <string>
 

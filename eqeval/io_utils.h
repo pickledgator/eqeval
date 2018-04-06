@@ -7,7 +7,7 @@
 namespace eqeval {
 namespace io_utils {
 
-std::vector<std::string> readEquationsFromFile(const std::string &input_file_path);
+    std::vector<std::string> readEquationsFromFile(const std::string &input_file_path);
 
 } // namespace io_utils
 } // namespace eqeval

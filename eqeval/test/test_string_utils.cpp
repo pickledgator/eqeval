@@ -53,17 +53,22 @@ TEST_CASE("Test for string utils", "[string_utils]") {
         REQUIRE(rhs_tokens.size() == 5);
         REQUIRE(rhs_tokens[4] == "blah");
         REQUIRE_THROWS(eqeval::string_utils::extractTokensFromString(std::string("= 1 + 3 + var3"), lhs, rhs_tokens));
-        REQUIRE_THROWS(eqeval::string_utils::extractTokensFromString(std::string("var + 1 = 3 + var"), lhs, rhs_tokens));
+        REQUIRE_THROWS(
+            eqeval::string_utils::extractTokensFromString(std::string("var + 1 = 3 + var"), lhs, rhs_tokens));
         REQUIRE_THROWS(eqeval::string_utils::extractTokensFromString(std::string("var ="), lhs, rhs_tokens));
         REQUIRE_THROWS(eqeval::string_utils::extractTokensFromString(std::string("var="), lhs, rhs_tokens));
-        REQUIRE_NOTHROW(eqeval::string_utils::extractTokensFromString(std::string("var       =      1"), lhs, rhs_tokens));
-        REQUIRE_THROWS(eqeval::string_utils::extractTokensFromString(std::string("var.       =      1"), lhs, rhs_tokens));
-        REQUIRE_THROWS(eqeval::string_utils::extractTokensFromString(std::string("var2       =      1 + var1"), lhs, rhs_tokens));
-        REQUIRE_THROWS(eqeval::string_utils::extractTokensFromString(std::string("var2 =      1        +     var1"), lhs, rhs_tokens));
+        REQUIRE_NOTHROW(
+            eqeval::string_utils::extractTokensFromString(std::string("var       =      1"), lhs, rhs_tokens));
+        REQUIRE_THROWS(
+            eqeval::string_utils::extractTokensFromString(std::string("var.       =      1"), lhs, rhs_tokens));
+        REQUIRE_THROWS(
+            eqeval::string_utils::extractTokensFromString(std::string("var2       =      1 + var1"), lhs, rhs_tokens));
+        REQUIRE_THROWS(eqeval::string_utils::extractTokensFromString(
+            std::string("var2 =      1        +     var1"), lhs, rhs_tokens));
     }
 
     SECTION("tokens to string") {
-        std::vector<std::string> tokens = {"var", "=", "1", "+", "2"};
+        std::vector<std::string> tokens = { "var", "=", "1", "+", "2" };
         std::string out = "var=1+2";
         REQUIRE(eqeval::string_utils::tokensToString(tokens) == out);
     }
