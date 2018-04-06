@@ -5,6 +5,7 @@ cc_library(
         "equation_parser.cpp",
         "string_utils.cpp",
         "io_utils.cpp",
+        "shunting_yard.cpp",
     ],
     hdrs = [
         "equation_evaluator.h",
@@ -12,6 +13,7 @@ cc_library(
         "exception.h",
         "string_utils.h",
         "io_utils.h",
+        "shunting_yard.h",
     ],
 )
 
@@ -27,6 +29,10 @@ cc_test(
     srcs = [
         "test/test_string_utils.cpp",
         "test/test_io_utils.cpp",
+        "test/test_exception.cpp",
+        "test/test_equation_parser.cpp",
+        "test/test_equation_evaluator.cpp",
+        "test/test_shunting_yard.cpp",
     ],
     deps = [
         "@catch//:catch_main",

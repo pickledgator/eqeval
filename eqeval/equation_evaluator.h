@@ -18,13 +18,14 @@ class EquationEvaluator {
     void printSolution() noexcept;
     void printEquations() noexcept;
     void solve(const std::vector<std::string> &equations);
+    std::map<std::string, std::string> const &getSolution() { return variable_map_; };
 
   private:
     void generateParsers(const std::vector<std::string> &equation_strings);
     void evaluateEquation(equation_parser::EquationParser &eq);
-    std::vector<std::string> shuntingYardSimple(const std::vector<std::string> &tokens);
+    // std::vector<std::string> shuntingYardSimple(const std::vector<std::string> &tokens);
     bool resolveVariable(const std::string &key, std::string &value);
-    unsigned long evaluateRPN(std::vector<std::string> tokens);
+    // unsigned long evaluateRPN(std::vector<std::string> tokens);
 
     std::vector<std::string> equation_strings_;
     std::deque<equation_parser::EquationParser> equation_parsers_;

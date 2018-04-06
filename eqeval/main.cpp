@@ -53,7 +53,8 @@ int main(int argc, char **argv) {
         ee.solve(equations);
     } catch (const eqeval::Exception &e) {
         // caught an exception in processing, display input data
-        ee.printEquations();
+        std::cout << e.what() << std::endl;
+        // ee.printEquations();
         return -1;
     }
 
