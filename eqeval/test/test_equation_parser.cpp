@@ -11,11 +11,11 @@ TEST_CASE("Tests for equation parser", "[equation_parser]") {
     SECTION("valid parse") {
         auto parse = eqeval::equation_parser::EquationParser(std::string("var = 1 + 2"));
         REQUIRE(parse.getLHS() == "var");
-        REQUIRE(parse.getRHS() == "1+2");
+        REQUIRE(parse.getRHS() == "1 + 2");
         REQUIRE(parse.getRHSTokens().size() == 3);
         REQUIRE(parse.getRHSTokens()[1] == "+");
         std::stringstream out;
         out << parse;
-        REQUIRE(out.str() == std::string("Equation(var = 1+2)"));
+        REQUIRE(out.str() == std::string("Equation(var = 1 + 2)"));
     }
 }

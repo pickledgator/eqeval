@@ -1,6 +1,7 @@
 #include "catch.hpp"
 #include "eqeval/shunting_yard.h"
 #include <map>
+#include <iostream>
 
 TEST_CASE("Tests for shunting yard algorithm", "[shunting_yard]") {
     std::map<std::string, std::function<unsigned long(unsigned long, unsigned long)>> operator_map{ { "+",
@@ -34,6 +35,22 @@ TEST_CASE("Tests for shunting yard algorithm", "[shunting_yard]") {
         auto out = eqeval::algorithm::shuntingYardInfixToRPN(tokens, variable_map);
         REQUIRE(out.size() == 7);
         REQUIRE(out[6] == "+");
+    }
+
+    SECTION("invalid input with non var, num, operator") {
+        std::map<std::string, std::string> variable_map;
+        variable_map.insert(std::pair<std::string, std::string>("a", "3"));
+        variable_map.insert(std::pair<std::string, std::string>("b", "4"));
+        std::vector<std::string> tokens = {"b", "+", "3.5", "+", "a", "+", "1000"};
+        REQUIRE_THROWS(eqeval::algorithm::shuntingYardInfixToRPN(tokens, variable_map));
+    }
+
+    SECTION("invalid input with non var, num, operator") {
+        std::map<std::string, std::string> variable_map;
+        variable_map.insert(std::pair<std::string, std::string>("a", "3"));
+        variable_map.insert(std::pair<std::string, std::string>("b", "4"));
+        std::vector<std::string> tokens = {"b", "-", "3", "+", "a", "+", "1000"};
+        REQUIRE_THROWS(eqeval::algorithm::shuntingYardInfixToRPN(tokens, variable_map));
     }
 
     SECTION("rpn to ulong valid") {

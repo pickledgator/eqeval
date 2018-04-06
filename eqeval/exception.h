@@ -6,6 +6,9 @@
 
 namespace eqeval {
 
+/// General purpose wrapper for std::exception to enable a recoverable or non-recoverable flag
+/// Use the what() function to get the reason
+/// Use isRecoverable() to understand if the exception causes a failure or can be handled in another way
 struct Exception : public std::exception {
     Exception()
         : reason_("") {}

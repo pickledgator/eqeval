@@ -5,7 +5,7 @@ TEST_CASE("Test for io utils", "[io_utils]") {
 
     SECTION("read file from disk") {
         auto equations = eqeval::io_utils::readEquationsFromFile("eqeval/test/test_equations_valid.txt");
-        REQUIRE(equations.size() == 6);
+        REQUIRE(equations.size() == 7);
     }
 
     SECTION("read invalid file from disk") {

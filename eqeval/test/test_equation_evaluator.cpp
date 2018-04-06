@@ -1,5 +1,6 @@
 #include "catch.hpp"
 #include "eqeval/equation_evaluator.h"
+#include "eqeval/io_utils.h"
 #include <sstream>
 
 TEST_CASE("Tests for equation evaluator", "[equation_evaluator]") {
@@ -41,5 +42,22 @@ TEST_CASE("Tests for equation evaluator", "[equation_evaluator]") {
     SECTION("bad parse") {
         std::vector<std::string> equations = { "var = ", "a = 3 + 4" };
         REQUIRE_THROWS(ee.solve(equations));
+    }
+
+    SECTION("invalid characters") {
+        std::vector<std::string> equations = { "var = 3.5", "a = 3 + 4" };
+        REQUIRE_THROWS(ee.solve(equations));
+        std::vector<std::string> equations2 = { "var = 3 - 1", "a = 3 + 4" };
+        REQUIRE_THROWS(ee.solve(equations2));
+        std::vector<std::string> equations3 = { "var+ = 3", "a = 3 + 4" };
+        REQUIRE_THROWS(ee.solve(equations3));
+    }
+
+    SECTION("full pipeline valid") {
+        auto ee = eqeval::EquationEvaluator();
+        auto equations = eqeval::io_utils::readEquationsFromFile("eqeval/test/test_equations_valid.txt");
+        REQUIRE_NOTHROW(ee.solve(equations));
+        REQUIRE(ee.getSolution().size() == 6);
+        REQUIRE(ee.getSolution().at("location") == "16");
     }
 }

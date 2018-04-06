@@ -10,9 +10,9 @@ TEST_CASE("Test for string utils", "[string_utils]") {
         REQUIRE_FALSE(eqeval::string_utils::isOperator(std::string("3")));
         REQUIRE_FALSE(eqeval::string_utils::isOperator(std::string("two words")));
         REQUIRE_FALSE(eqeval::string_utils::isOperator(std::string(" - ")));
-        REQUIRE(eqeval::string_utils::isOperator(std::string("-")));
-        REQUIRE(eqeval::string_utils::isOperator(std::string("*")));
-        REQUIRE(eqeval::string_utils::isOperator(std::string("/")));
+        REQUIRE_FALSE(eqeval::string_utils::isOperator(std::string("-")));
+        REQUIRE_FALSE(eqeval::string_utils::isOperator(std::string("*")));
+        REQUIRE_FALSE(eqeval::string_utils::isOperator(std::string("/")));
     }
 
     SECTION("is equals operator") {
@@ -69,7 +69,7 @@ TEST_CASE("Test for string utils", "[string_utils]") {
 
     SECTION("tokens to string") {
         std::vector<std::string> tokens = { "var", "=", "1", "+", "2" };
-        std::string out = "var=1+2";
+        std::string out = "var = 1 + 2";
         REQUIRE(eqeval::string_utils::tokensToString(tokens) == out);
     }
 }
